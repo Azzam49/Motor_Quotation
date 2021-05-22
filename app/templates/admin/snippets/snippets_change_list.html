@@ -1,0 +1,40 @@
+{% extends 'admin/change_list.html' %}
+
+{% block object-tools %}
+    <form id="send-emails-form" action="{% url 'send-emails' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="quotations-id-list" id="quotations-id-list" value="">
+        <button class="button" style="padding: 8px 15px 8px 15px; font-size: 18px; border:2px solid black;" id="my-button" type="button">Send Emails</button>
+    </form>
+
+    <script>
+        my_btn = document.getElementById("my-button")
+        my_table = document.querySelector("#result_list")
+
+        document.addEventListener("DOMContentLoaded", function(event) {
+            my_btn = document.getElementById("my-button")
+            my_table = document.querySelector("#result_list")
+            my_body = my_table.querySelector("tbody")
+            my_btn.addEventListener('click', function() {
+                let id_list = [];
+                for (var i = 0, row; row = my_body.rows[i]; i++) {
+                    if(row.classList.contains("selected")){
+                        my_checkbox = row.querySelector("input[type='checkbox']")
+                        id_list.push(my_checkbox.value)
+                        console.log(my_checkbox.value)
+                    }
+                }
+
+                if(id_list.length == 0){
+                    alert("Please select a quotation to send an email.")
+                    return;
+                }
+
+                document.getElementById("quotations-id-list").value = id_list;
+                document.getElementById("send-emails-form").submit()
+            }, false);
+        });
+
+    </script>
+    {{ block.super }}
+{% endblock object-tools %}

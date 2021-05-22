@@ -1,0 +1,33 @@
+.box{
+    width: 60%;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px;
+    text-align: center;
+    border: 2px solid gray;
+    border-radius: 10px;
+    box-shadow: 1px 3px 7px 2px #888888;
+    font-family: montserrat;
+}
+
+.title{
+    text-align: center;
+    font-size: 28px;
+}
+
+.message{
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 25px;
+    word-spacing: 4px;
+    color: #616161;
+}
+
+.img-success{
+    margin-left: auto;
+    margin-right: auto;
+}

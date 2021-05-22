@@ -1,0 +1,2 @@
+Hi {{username}}! Motor Quotation Admin had shared you the quotation details on PDF file attached, Thank you.
+This is a computer auto-generated system message. Please do not reply to this email.

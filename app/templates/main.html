@@ -1,0 +1,53 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motor Quotation | {{title}}</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <!-- HEADER -->
+    {% include 'assets/header.html' %}
+
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == "error" %}
+                <div class="alert alert-danger">
+                    <a class="close" data-dismiss="alert">×</a>
+                    {{ message|safe }}
+                </div>
+                <div class="mt-3"></div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+    {% block content %}
+    {% endblock content %}
+
+    {% if '/login/' == request.path or '/logout/' == request.path %}
+        <!-- FOOTER -->
+        {% include 'assets/footer.html' %}
+    {% endif %}
+
+     <!-- jQuery -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     <!-- Bootstrap -->
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+
+    {% block extra_script %}
+    {% endblock extra_script %}
+
+</body>
+</html>

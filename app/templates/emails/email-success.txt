@@ -1,0 +1,8 @@
+Thanks for submitting the quotation form.
+Login to {{quotation_page_url}} to view your quotation.
+
+Use the following credentials for signing in:</h5>
+Username : {{username}}
+Password : {{password}}
+
+This is a computer auto-generated system message. Please do not reply to this email.

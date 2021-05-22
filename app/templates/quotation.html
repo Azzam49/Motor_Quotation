@@ -1,0 +1,315 @@
+{% extends 'main.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <!-- MultiStep Form -->
+    <div class="container-fluid" id="grad1">
+        <div class="row justify-content-center mt-0">
+            <div class="col-11 col-sm-9 col-md-7 col-lg-6 text-center p-0 mt-3 mb-2">
+                <div class="card px-0 pt-4 pb-0">
+                    <h2><strong>Motor Quotation Formset</strong></h2>
+                    <p>Fill all form field to go to next step</p>
+                    <div class="row">
+                        <div class="col-md-12 mx-0">
+                            <form id="msform" method="post">
+                                {% csrf_token %}
+                                <!-- progressbar -->
+                                <ul id="progressbar">
+                                    <li class="active" id="customer"><strong>Customer Details</strong></li>
+                                    <li id="vehicle"><strong>Vehicle Details</strong></li>
+                                    <li id="coverage"><strong>Coverage</strong></li>
+                                    <li id="summary"><strong>Summary</strong></li>
+                                </ul> <!-- fieldsets -->
+                                <fieldset>
+                                    <div class="form-card tab">
+                                        <h2 class="fs-title">Customer Details</h2>
+                                        <div class="form-group">
+                                            <label for="username" class=" requiredField">
+                                                Name
+                                                <span class="asteriskField">*</span>
+                                            </label>
+                                            <div class="input-group mb-3">
+                                            <input type="text"  class="textinput textInput form-control" name="username" id="username"  autocomplete="off" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email" class=" requiredField">
+                                                Email
+                                                <span class="asteriskField">*</span>
+                                            </label>
+                                            <div class="input-group mb-3">
+                                                <input type="text"  class="email textinput textInput form-control" name="email" id="email"  autocomplete="off" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="mobile" class=" requiredField">
+                                                Mobile No.
+                                                <span class="asteriskField">*</span>
+                                            </label>
+                                            <div class="input-group mb-3">
+                                                <input type="text"  class="textinput textInput form-control" name="mobile" id="mobile"  autocomplete="off" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="button" name="next" class="next action-button" value="Next Step" />
+                                </fieldset>
+                                <fieldset>
+                                    <div class="form-card tab">
+                                        <h2 class="fs-title">Vehicle Details</h2>
+                                        {{ VehicleForm|crispy }}
+                                    </div>
+                                    <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                                    <input type="button" name="next" class="next action-button" value="Next Step" />
+                                </fieldset>
+                                <fieldset>
+                                    <div class="form-card tab">
+                                        <h2 class="fs-title">Coverage</h2>
+                                        <div class="form-group">
+                                            <label>Windscreen Coverage</label>
+                                            <select class="form-control" name="windscreen_coverage" id="windscreen_coverage" style="width: 100%;" required>
+                                            <option selected="selected" disabled>Choice (Yes/No):</option>
+                                              <option value="yes">Yes</option>
+                                              <option value="no">No</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Passenger Liability Coverage</label>
+                                            <select class="form-control" name="passenger_liability_coverage" id="passenger_liability_coverage" style="width: 100%;" required>
+                                            <option selected="selected" disabled>Choice (Yes/No):</option>
+                                              <option value="yes">Yes</option>
+                                              <option value="no">No</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Flood Coverage</label>
+                                            <select class="form-control" name="flood_coverage" id="flood_coverage" style="width: 100%;" required>
+                                            <option selected="selected" disabled>Choice (Yes/No):</option>
+                                              <option value="yes">Yes</option>
+                                              <option value="no">No</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Windstorm Coverage</label>
+                                            <select class="form-control" name="windstorm_coverage" id="windstorm_coverage" style="width: 100%;" required>
+                                            <option selected="selected" disabled>Choice (Yes/No):</option>
+                                              <option value="yes">Yes</option>
+                                              <option value="no">No</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Landslide Coverage</label>
+                                            <select class="form-control" name="landslide_coverage" id="landslide_coverage" style="width: 100%;" required>
+                                            <option selected="selected" disabled>Choice (Yes/No):</option>
+                                              <option value="yes">Yes</option>
+                                              <option value="no">No</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Subsidence Coverage</label>
+                                            <select class="form-control" name="subsidence_coverage" id="subsidence_coverage" style="width: 100%;" required>
+                                            <option selected="selected" disabled>Choice (Yes/No):</option>
+                                              <option value="yes">Yes</option>
+                                              <option value="no">No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                                    <input type="button" name="next" class="next action-button mb-5" value="Next Step" />
+                                </fieldset>
+
+                                <fieldset>
+                                    <div class="form-card">
+                                        <h2 class="fs-title">Summary</h2>
+                                        <h4 class="display_quotation_price">
+                                            Quotation Price : <span id="display_quotation_price">0</span> RM
+                                        </h4>
+                                        <input type="hidden"  name="quotation_price" id="quotation_price">
+                                        <div class="form-group" style="font-size: 20px;">
+                                            <input type="checkbox" name="email_quotation" id="email_quotation">
+                                            <label for="email_quotation">Email me the quotation (PDF Format)</label>
+                                        </div>
+                                    </div>
+                                    <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                                    <input type="submit" class="action-button submit" value="Submit" />
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block extra_script %}
+    <script>
+        const formula_percentage = "{{formula_percentage.value}}";
+
+        const coverages = {
+            windscreen_coverage: "{{windscreen_coverage.value}}",
+            passenger_liability_coverage: "{{passenger_liability_coverage.value}}",
+            subsidence_coverage: "{{subsidence_coverage.value}}",
+            windstorm_coverage: "{{windstorm_coverage.value}}",
+            flood_coverage: "{{flood_coverage.value}}",
+            landslide_coverage: "{{landslide_coverage.value}}",
+        }
+
+        $(document).ready(function(){
+
+            var current_fs, next_fs, previous_fs; //fieldsets
+            var opacity;
+            var currentTab = 0;
+
+            $(".next").click(function(){
+
+                if(!validateForm()) return false;
+
+                current_fs = $(this).parent();
+                next_fs = $(this).parent().next();
+
+                //Add Class Active
+                $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+                //remove invalid class if found
+                x = document.getElementsByClassName("tab");
+                y = x[currentTab].getElementsByTagName("input");
+                for (i = 0; i < y.length; i++) {
+                    y[i].classList.remove("invalid");
+                }
+
+                // Increase or decrease the current tab by 1:
+                currentTab = currentTab + 1;
+
+                // if forwarding to summary page run quotation price calculations
+                if(currentTab == 3){
+                    calculateQuotationPrice();
+                }
+
+                //show the next fieldset
+                next_fs.show();
+                //hide the current fieldset with style
+                current_fs.animate({opacity: 0}, {
+                step: function(now) {
+                    // for making fielset appear animation
+                    opacity = 1 - now;
+
+                    current_fs.css({
+                    'display': 'none',
+                    'position': 'relative'
+                    });
+                    next_fs.css({'opacity': opacity});
+                },
+                    duration: 600
+                });
+            });
+
+            $(".previous").click(function(){
+
+            current_fs = $(this).parent();
+            previous_fs = $(this).parent().prev();
+
+            //Remove class active
+            $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+            // Increase or decrease the current tab by 1:
+            currentTab = currentTab - 1;
+
+            //show the previous fieldset
+            previous_fs.show();
+
+            //hide the current fieldset with style
+            current_fs.animate({opacity: 0}, {
+            step: function(now) {
+            // for making fielset appear animation
+            opacity = 1 - now;
+
+            current_fs.css({
+            'display': 'none',
+            'position': 'relative'
+            });
+            previous_fs.css({'opacity': opacity});
+            },
+            duration: 600
+            });
+            });
+
+            $('.radio-group .radio').click(function(){
+            $(this).parent().find('.radio').removeClass('selected');
+            $(this).addClass('selected');
+            });
+
+            function validateForm() {
+                // This function deals with validation of the form fields
+                var x, y, i, valid = true;
+                x = document.getElementsByClassName("tab");
+                y = x[currentTab].getElementsByTagName("input");
+                // A loop that checks every input field in the current tab:
+                for (i = 0; i < y.length; i++) {
+                    // If a field is empty...
+                    if (y[i].value == "") {
+                    // add an "invalid" class to the field:
+                    y[i].className += " invalid";
+                    // and set the current valid status to false
+                    valid = false;
+                    alert(`${y[i].name} Field cannot be Empty!`)
+                    }
+                    //validate email inputs
+                    if(y[i].classList.contains("email")){
+
+                        valid = validateEmail(y[i].value)
+                        if(!valid){
+                            alert("Invalid Email Address!")
+                            y[i].className += " invalid";
+                        }
+                    }
+                    //validate vehicle price
+                    if(y[i].id == "vehicle-price"){
+                        if(y[i].value < 30000){
+                            alert("Minimum Vehicle Price is 30,000!")
+                            valid = false;
+                            y[i].className += " invalid";
+                        }
+                    }
+                }
+
+                // coverage dropdowns validation
+                if(currentTab == 2){
+                    dropdowns = x[currentTab].getElementsByTagName("select");
+                    for (i = 0; i < dropdowns.length; i++) {
+                        if (dropdowns[i].value == "Choice (Yes/No):"){
+                            alert(`Please select a choice for ${dropdowns[i].name} Field!`)
+                            dropdowns[i].className += " invalid";
+                            valid = false;
+                        }
+                    }
+                }
+                return valid; // return the valid status
+            }
+
+            function validateEmail(email) {
+                const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(String(email).toLowerCase());
+            }
+
+            function calculateQuotationPrice(){
+                vehicle_price = document.getElementById("vehicle-price").value;
+                quotation_price = (formula_percentage / 100) * vehicle_price
+                // console.log(`vehicle price is : ${vehicle_price}`)
+                // console.log(`quotation price is : ${quotation_price}`)
+
+                for (var key in coverages) {
+                    if (coverages.hasOwnProperty(key)) {
+                        if(document.getElementById(key).value == "yes"){
+                            quotation_price = quotation_price + parseFloat(coverages[key]);
+                        }
+                    }
+                }
+
+                document.getElementById("display_quotation_price").innerText = quotation_price;
+                document.getElementById("quotation_price").value = quotation_price;
+            }
+        });
+    </script>
+{% endblock extra_script %}
