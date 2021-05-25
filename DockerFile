@@ -34,8 +34,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN pip3 install --upgrade pip
 RUN pip3 install pipenv
 
+# install (python) project dependencies
+ADD requirements.txt /
+RUN pip3 install -r requirements.txt
+
 # Install project dependencies
-RUN pipenv install --skip-lock --system --dev
+# RUN pipenv install --skip-lock --system --dev
+
+
+# WORKDIR /app
 
 EXPOSE 8888
 CMD gunicorn motor_quotation.wsgi:application --bind 0.0.0.0:$PORT

@@ -3,6 +3,9 @@ from . import views
 from .features.quotation import views as quotation_views
 from .system import views as system_views
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path("testing/", views.testing, name="testing"),
     path("quotation-form/", quotation_views.create_quotation, name="quotation-form"),
